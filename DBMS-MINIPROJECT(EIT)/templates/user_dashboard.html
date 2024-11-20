@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #6bd098, #48a9a6); /* Green and blue gradient */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dashboard-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #48a9a6;
+        }
+
+        a {
+            color: #48a9a6;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            margin: 1em 0;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #358a8b;
+        }
+
+        .suggestions-list, table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+        }
+
+        .suggestions-list li, table th, table td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #48a9a6;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table td {
+            background-color: #f7f7f7;
+        }
+
+        .log-form {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: #f4f9f4;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .log-form label {
+            display: block;
+            margin: 0.5rem 0;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .log-form input[type="text"],
+        .log-form input[type="date"],
+        .log-form select {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .log-form input[type="submit"] {
+            background-color: #6bd098;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .log-form input[type="submit"]:hover {
+            background-color: #48a9a6;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>User Dashboard</h1>
+        <a href="{{ url_for('logout') }}">Logout</a>
+
+        <h2>Suggestions for Better Improvement</h2>
+        <ul class="suggestions-list">
+            {% for suggestion in suggestions %}
+            <li>{{ suggestion }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Your Rankings</h2>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>User</th>
+                <th>Total Usage</th>
+            </tr>
+            {% for index, user in rankings|enumerate %}
+            <tr>
+                <td>{{ index + 1 }}</td>
+                <td>{{ user.Email }}</td>
+                <td>{{ user.Total_Usage }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3>Insert Usage Log</h3>
+        <form action="{{ url_for('user_dashboard') }}" method="post" class="log-form">
+            <label for="log_type">Log Type:</label>
+            <select id="log_type" name="log_type">
+                <option value="electricity">Electricity</option>
+                <option value="water">Water</option>
+            </select><br><br>
+            
+            <label for="month">Month:</label>
+            <input type="text" id="month" name="month" required><br><br>
+            
+            <label for="usage">Usage (Units):</label>
+            <input type="text" id="usage" name="usage" required><br><br>
+            
+            <label for="cost">Cost (₹):</label>
+            <input type="text" id="cost" name="cost" required><br><br>
+            
+            <label for="log_date">Log Date:</label>
+            <input type="date" id="log_date" name="log_date" required><br><br>
+            
+            <input type="submit" value="Insert Log">
+        </form>
+    </div>
+</body>
+</html>

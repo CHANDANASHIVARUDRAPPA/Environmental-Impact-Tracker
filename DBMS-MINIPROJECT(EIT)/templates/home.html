@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Environmental Impact Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="hero-section">
+        <h1>Environmental Impact Tracker</h1>
+        <p>Track and reduce your environmental impact by monitoring water and electricity usage. Join us in creating a sustainable future!</p>
+        <img src="{{ url_for('static', filename='environment.jpg') }}" alt="Environment" style="width: 50%; height: auto; max-width: 400px;">
+
+    </div>
+
+    <div class="about-section">
+        <h2>About Us</h2>
+        <p>Our mission is to provide tools that help individuals and businesses track their resource consumption and make data-driven decisions to reduce environmental impact.</p>
+    </div>
+
+    <div class="features-section">
+        <h2>Features</h2>
+        <div class="features">
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='water_usage.jpg') }}" alt="Usage Monitoring">
+                <h3>Monitor Resource Usage</h3>
+                <p>Track your water and electricity consumption easily.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='suggestions.jpg') }}" alt="Suggestions">
+                <h3>Receive Customized Suggestions</h3>
+                <p>Get personalized tips based on your usage patterns to reduce environmental impact.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='leaderboard.jpg') }}" alt="Rankings">
+                <h3>Compete in Rankings</h3>
+                <p>See how you stack up against other users in terms of resource savings.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="call-to-action">
+        <h2>Join Us Today!</h2>
+        <p>Sign up now to start tracking your environmental impact and contribute to a greener future.</p>
+        <a href="{{ url_for('login_page') }}" class="btn">Login to Get Started</a>
+    </div>
+
+    <footer>
+        <p>© 2024 Environmental Impact Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>

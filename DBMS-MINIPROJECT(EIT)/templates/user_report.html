@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h2>User Report for User ID: {{ user_id }}</h2>
+    </header>
+
+    <!-- Section for Suggestions -->
+    <section>
+        <h3>Suggestions</h3>
+        {% if suggestions %}
+            <ul>
+                {% for suggestion in suggestions %}
+                    <li>{{ suggestion['Suggestion_Text'] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No suggestions available.</p>
+        {% endif %}
+    </section>
+
+    <!-- Section for Water Logs Table -->
+    <section>
+        <h3>Water Usage Logs</h3>
+        {% if water_logs %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Water Usage</th>
+                        <th>Water Cost</th>
+                        <th>Log Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in water_logs %}
+                        <tr>
+                            <td>{{ log['Month'] }}</td>
+                            <td>{{ log['Water_Usage'] }}</td>
+                            <td>{{ log['Water_Cost'] }}</td>
+                            <td>{{ log['Log_Date'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No water logs available.</p>
+        {% endif %}
+    </section>
+
+    <!-- Section for Electricity Logs Table -->
+    <section>
+        <h3>Electricity Usage Logs</h3>
+        {% if electricity_logs %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Electricity Usage</th>
+                        <th>Electricity Cost</th>
+                        <th>Log Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in electricity_logs %}
+                        <tr>
+                            <td>{{ log['Month'] }}</td>
+                            <td>{{ log['Electricity_Usage'] }}</td>
+                            <td>{{ log['Electricity_Cost'] }}</td>
+                            <td>{{ log['Log_Date'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No electricity logs available.</p>
+        {% endif %}
+    </section>
+
+    <!-- Water Usage Chart -->
+    <section>
+        <h3>Water Usage Graph</h3>
+        <canvas id="waterUsageChart"></canvas>
+    </section>
+
+    <!-- Electricity Usage Chart -->
+    <section>
+        <h3>Electricity Usage Graph</h3>
+        <canvas id="electricityUsageChart"></canvas>
+    </section>
+
+    <script>
+        // Data for Water Usage Chart
+        const waterUsageData = {
+            labels: [{% for log in water_logs %} "{{ log['Month'] }}", {% endfor %}],
+            datasets: [{
+                label: 'Water Usage',
+                data: [{% for log in water_logs %} {{ log['Water_Usage'] }}, {% endfor %}],
+                borderColor: 'blue',
+                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                fill: true
+            }]
+        };
+
+        // Data for Electricity Usage Chart
+        const electricityUsageData = {
+            labels: [{% for log in electricity_logs %} "{{ log['Month'] }}", {% endfor %}],
+            datasets: [{
+                label: 'Electricity Usage',
+                data: [{% for log in electricity_logs %} {{ log['Electricity_Usage'] }}, {% endfor %}],
+                borderColor: 'red',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: true
+            }]
+        };
+
+        // Configurations for Water Usage Chart
+        const waterUsageConfig = {
+            type: 'line',
+            data: waterUsageData,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Water Usage'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Configurations for Electricity Usage Chart
+        const electricityUsageConfig = {
+            type: 'line',
+            data: electricityUsageData,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Electricity Usage'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Render Water Usage Chart
+        new Chart(document.getElementById('waterUsageChart'), waterUsageConfig);
+
+        // Render Electricity Usage Chart
+        new Chart(document.getElementById('electricityUsageChart'), electricityUsageConfig);
+    </script>
+</body>
+</html>

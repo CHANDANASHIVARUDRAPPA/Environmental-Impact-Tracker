@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Confirm User Deletion</h2>
+    <p>Are you sure you want to delete the user with the following details?</p>
+
+    <ul>
+        <li><strong>User ID:</strong> {{ user['User_ID'] }}</li>
+        <li><strong>Email:</strong> {{ user['Email'] }}</li>
+    </ul>
+
+    <form action="{{ url_for('delete_user_from_dashboard', user_id=user['User_ID']) }}" method="POST">
+        <button type="submit" class="btn-delete">Confirm Delete</button>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn-cancel">Cancel</a>
+    </form>    
+</body>
+</html>

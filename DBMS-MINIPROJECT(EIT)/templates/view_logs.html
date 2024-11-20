@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>All Logs</h2>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+    <table border="1">
+        <tr>
+            <th>Log ID</th>
+            <th>User ID</th>
+            <th>Month</th>
+            <th>Usage</th>
+            <th>Cost</th>
+            <th>Log Date</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.Log_ID }}</td>
+            <td>{{ log.User_ID }}</td>
+            <td>{{ log.Month }}</td>
+            <td>{{ log.Electricity_Usage or log.Water_Usage }}</td>
+            <td>{{ log.Electricity_Cost or log.Water_Cost }}</td>
+            <td>{{ log.Log_Date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

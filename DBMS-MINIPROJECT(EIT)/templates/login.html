@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Environmental Impact Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Center and style the login form */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom right, #6bd098, #48a9a6);
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #48a9a6;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #333;
+            font-size: 1em;
+            text-align: left;
+        }
+
+        form select,
+        form input[type="text"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 0.75em;
+            margin: 0.5em 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        form button {
+            background-color: #6bd098;
+            color: white;
+            padding: 0.75em;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #48a9a6;
+        }
+
+        .forgot-password {
+            margin-top: 1em;
+            font-size: 0.9em;
+            color: #48a9a6;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+            color: #358a8b;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form method="POST">
+            <!-- Role selection drop-down -->
+            <label for="role">Login as:</label>
+            <select id="role" name="role" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+    </div>
+</body>
+</html>
