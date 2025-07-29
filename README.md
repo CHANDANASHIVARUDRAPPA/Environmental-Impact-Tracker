@@ -4,7 +4,7 @@
 
 ---
 
-## 🔍 Project Description
+##  Project Description
 
 The **Environmental Impact Tracker** is a full-stack application that allows users to:
 
@@ -17,27 +17,27 @@ This project was built as part of an academic Database Management System (DBMS) 
 
 ---
 
-## 🎯 Features
+##  Features
 
-### 🔑 Authentication
+### Authentication
 
 * Role-based login: **Admin** and **User**
 * User session management
 
-### 👨‍💻 Admin Dashboard
+###  Admin Dashboard
 
 * Add/view/delete usage logs (water and electricity)
 * Manage user roles and credentials
 * Perform all CRUD operations (Create, Read, Update, Delete)
 
-### 👤 User Dashboard
+###  User Dashboard
 
 * Submit monthly usage logs
 * View personalized suggestions based on consumption
 * Leaderboard ranking (lower usage = higher rank)
 * View history and insights
 
-### 📊 DBMS Features
+### DBMS Features
 
 * **5+ SQL Queries** used across the app
 * **Triggers**: Auto-updates and data checks
@@ -48,7 +48,7 @@ This project was built as part of an academic Database Management System (DBMS) 
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
 | Layer         | Technology Used                 |
 | ------------- | ------------------------------- |
@@ -59,7 +59,7 @@ This project was built as part of an academic Database Management System (DBMS) 
 
 ---
 
-## 🗂 Folder Structure
+## Folder Structure
 
 ```
 EnvironmentalImpactTracker/
@@ -81,9 +81,9 @@ EnvironmentalImpactTracker/
 
 ---
 
-## 🔧 Setup Instructions
+## Setup Instructions
 
-### ✅ Prerequisites
+###  Prerequisites
 
 * Python 3.x
 * MySQL Server
@@ -92,7 +92,7 @@ EnvironmentalImpactTracker/
 
 ---
 
-### 📦 Step-by-Step Installation
+###  Step-by-Step Installation
 
 1. **Clone the Repository**
 
@@ -118,7 +118,7 @@ USE environmentalimpacttracker;
 
 Then run all the table creation scripts, triggers, functions, and stored procedures provided in `/sql_scripts.sql`.
 
-> ✅ Ensure the following tables are created: `User`, `Electricity_Logs`, `Water_Logs`, `Suggestions`
+>  Ensure the following tables are created: `User`, `Electricity_Logs`, `Water_Logs`, `Suggestions`
 
 4. **Insert Initial Data**
 
@@ -145,7 +145,7 @@ Open your browser and go to:
 
 ---
 
-## 🚀 Usage Flow
+##  Usage Flow
 
 | Action               | Page               |
 | -------------------- | ------------------ |
@@ -157,25 +157,25 @@ Open your browser and go to:
 
 ---
 
-## 🧠 Smart DBMS Logic
+##  Smart DBMS Logic
 
-### ✅ Triggers:
+###  Triggers:
 
 * Auto-updates rankings after a new log is inserted
 
-### ✅ Functions:
+###  Functions:
 
 * `CheckWaterUsageThreshold()`: returns TRUE if usage > 100
 * `CheckElectricityUsageThreshold()`: returns TRUE if usage > 200
 
-### ✅ Procedures:
+###  Procedures:
 
 * Deleting a user and associated logs
 * Inserting logs with integrity checks
 
 ---
 
-## 🧪 Sample SQL Queries Used
+##  Sample SQL Queries Used
 
 ```sql
 -- Total water usage by user
@@ -190,16 +190,13 @@ ORDER BY Total ASC
 LIMIT 5;
 ```
 
-## 🏁 Future Enhancements
+##  Future Enhancements
 
 * Email alerts for excessive usage
 * Graph-based usage tracking
 * API version for mobile app integration
 * Export user reports as PDF
 
----
-
-## 👨‍💻 Author
 
 **Chandana S.**
 AI/ML Enthusiast | CSE-AI/ML Engineer
